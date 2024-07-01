@@ -1,0 +1,36 @@
+{
+  "name": "advancenode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "env-cmd -f dev.env npx nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "@fastify/auth": "^4.6.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/body-parser": "^1.19.5",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/lowdb": "^1.0.15",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "env-cmd": "^10.1.0",
+    "fastify": "^4.26.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "lowdb": "^7.0.1",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.2",
+    "validator": "^13.11.0"
+  }
+}

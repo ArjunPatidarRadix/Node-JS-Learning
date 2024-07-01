@@ -1,0 +1,180 @@
+swagger: "2.0"
+info:
+  title: Demo API test
+  description: This is my first swagger api demo
+  version: "1.0"
+  contact:
+    email: arjun@gmail.com
+  license:
+    name: "MIT License"
+    url: https://github.com/
+  servers: 
+    -url: http://localhost:4000/
+    description: THis is my local server
+    -url: http://localhost:3000
+    description: This is my production server
+schemes: [http, https]
+
+paths: 
+  /demo:
+    get: 
+      summary: Returns a string
+      description: Returns a string in get api
+      responses:
+        200:
+          description: Success
+          schema:
+            type: string
+            example: "A fake response"
+
+  /user:
+    get: 
+      summary: Return a object
+      description: This will return the user object
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+
+  /users:
+    get: 
+      summary: Return a array object
+      description: This will return the users list
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items: 
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+
+  /users/{id}:
+    get: 
+      summary: Return a object
+      description: This will return the perticular user details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+        404: 
+          description: Not Found
+
+  # /create:
+  #   post: 
+  #     summary: Create post
+  #     description: It will create a new post 
+  #     producers:
+  #       - application/json
+  #     consumes:
+  #       - application/json
+  #     parameters:
+  #       - in: body
+  #         name: User body
+  #         schema:
+  #           type: object
+  #           properties:
+  #             id:
+  #               type: integer
+  #             name:
+  #               type: string
+  #     responses:
+  #       200:
+  #         description: Success
+  #       201:
+  #         description: created
+
+  /create:
+    post: 
+      summary: Create post
+      description: It will create a new post 
+      producers:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: User body
+          schema:
+            $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Success
+        201:
+          description: created
+
+  /usersQuery:
+    get:
+      parameters:
+        - in: query
+          name: id
+          type: integer
+      responses:
+        200:
+          description: Success
+        404:
+          description: Not found
+
+#File upload
+  /upload:
+    post:
+      consumes:
+        - multipart/form-data
+      parameters:
+      - in: formData
+        name: file
+        type: file
+        required: true
+        description: File upload
+      - in: formData
+        name: id
+        type: integer
+        required: true
+        description: ID of integer
+      - in: header
+        name: auth
+        schema:
+          type: string
+      - in: cookie
+        name: debug
+        schema:
+          type: string
+        required: true
+        description: ID of integer
+      responses:
+        200:
+          description: Success
+        404:
+          description: Not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
